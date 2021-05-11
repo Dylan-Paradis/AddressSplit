@@ -4,11 +4,11 @@ This consists of two separate components designed to help clean up messy address
 
 ## The Cleaning Macro
 
-To use the first macro component you will need to make a copy of a local XLSM file that you will use to clean up your data prior to running that information through the custom functions. Start by making a new XLSM file locally on your computer, preferably in your downloads folder or desktop. The XLSM file should preferably be in the same directory where you temporarily store files downloaded from Relativity while you are performing manual entry work. Name the file something along the lines of "AddressCleanMacro.XLSM" to avoid getting the file confused with the other files that are downloaded from Relativity during your workflow or your deliverable. You should also save an empty backup copy of the XLSM file on your sharepoint drive. "Empty" meaning a copy of the XLSM file with just the macro code saved to it and no project specific info in the excel file proper. This will allow you can download a copy of the XLSM file without any project specific info for the next project in which it is needed. This setup also allows you to confine any project data/profiles to your local computer and account for the deletion of that data at the end of the project, and prevents you from uploading any project specific data to the backup copy of the XLSM file stored in your sharepoint.
+To use the first macro component you will need to make a copy of a local XLSM file that you will use to clean up your data prior to running that information through the custom functions. Start by making a new XLSM file locally on your computer, preferably in your downloads folder or desktop. The XLSM file should preferably be in the same directory where you temporarily store the files you are extracting and cleaning data. Name the file something along the lines of "AddressCleanMacro.XLSM" to avoid getting the file confused with the other files stored in this directory.
 
-Once your macro is saved you can cut and paste the code from this repositaory into your macro. The logic is explained in more depth in the comments to the code. In short, the macro does the following
+Once your macro is saved you can cut and paste the code from this repository into your macro. The logic is explained in more depth in the comments to the code. In short, the macro does the following
 * Asks you to specify which column contains your addresses
-* Looks for the last row in your data which contains information (this logic is still under work and can be improved upon, but is fairly accurate)
+* Looks for the last row in your data which contains information
 * For each cell in the specified column that contains an address the macro will perform the following steps
   - Change the casing to proper case
   - Remove all periods from the name
@@ -57,8 +57,6 @@ West|	W
 
 ### Bugs with the Macro
 There are a few errors that you should be aware of with this macro. The following are noted
-* Any instances of proper nouns containing a cardinal direction (South, North, East, West) will inadvertently have the cardinal direction changed to an abbreviation. This possibly causes an incorrect street name. For example Southpoint Drive will become Spoint Dr, or Western Creek Road will become Wern Crk Rd.
-* Proper nouns containing an abbreviated word will be changed and could result in a misspelling. For exampel Ridgeway Drive will become Rdgway Dr. Less of an issue when the abbreviated word is part of a name, but not part of the proper noun itself. For example Hidden Valley Lane will become Hidden Vly Ln, which is still a valid identifiable address
 * Any instances of a misspelling of an word requiring abbreviated will be overlookd (Steet, Avaneu, Terace, etc.)
 
 ## The Address Split Functions
