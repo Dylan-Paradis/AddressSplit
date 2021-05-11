@@ -1,6 +1,6 @@
 # Address Cleaning
 
-This consists of two separate components designed to help clean up messy addresses. The first component is a macro that can be run from an XLSM file. The second component are two custom Excel functions that split an address containing an Apt/Suite/Unit Number into two separate address lines. Together the two components can be used in a workflow that efficiently and somewhat accurately cleans up messy addresses for your final deliverable.
+This consists of two separate components designed to help clean up messy addresses. The first component is a macro that can be run from an XLSM file. The second component are two custom Excel functions that split an address containing an Apt/Suite/Unit Number into two separate address lines. Together the two components can be used in a workflow that efficiently and somewhat accurately cleans up messy addresses in Excel.
 
 ## The Cleaning Macro
 
