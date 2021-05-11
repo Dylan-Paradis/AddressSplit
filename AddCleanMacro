@@ -1,0 +1,262 @@
+Sub CleanAdds()
+
+    Dim ws As Worksheet
+    
+    Dim myColumn As Variant
+    Dim columnNum As Integer
+    
+    myColumn = InputBox("Enter the Column Letter for your addresses A - L")
+    Select Case myColumn
+    Case "A"
+        columnNum = 1
+    Case "B"
+        columnNum = 2
+    Case "C"
+        columnNum = 3
+    Case "D"
+        columnNum = 4
+    Case "E"
+        columnNum = 5
+    Case "F"
+        columnNum = 6
+    Case "G"
+        columnNum = 7
+    Case "H"
+        columnNum = 8
+    Case "I"
+        columnNum = 9
+    Case "J"
+        columnNum = 10
+    Case "K"
+        columnNum = 11
+    Case "L"
+        columnNum = 12
+    Case Else
+        MsgBox "Unacceptable Column"
+    End Select
+    
+    wsLr = ThisWorkbook.Sheets("Sheet1").Cells(Rows.Count, 1).End(xlUp).Row
+
+    For X = 1 To wsLr
+        Dim myAdd1 As Range
+        Set myAdd1 = ThisWorkbook.Sheets("Sheet1").Cells(X, columnNum)
+        myAdd1.Value = StrConv(myAdd1, vbProperCase)
+        
+        'Remove periods
+        myAdd1.Value = Replace(Expression:=myAdd1, Find:=".", Replace:="")
+        
+        'Set pattern matching for postal service abbreviations
+        'Decalre each abbreviated word as a regex object
+        Dim regexApt As Object
+        Dim regexAve As Object
+        Dim regexBlvd As Object
+        Dim regexCtr As Object
+        Dim regexCr As Object
+        Dim regexCt As Object
+        Dim regexDr As Object
+        Dim regexEast As Object
+        Dim regexExpy As Object
+        Dim regexHts As Object
+        Dim regexHwy As Object
+        Dim regexIs As Object
+        Dim regexJct As Object
+        Dim regexLk As Object
+        Dim regexLn As Object
+        Dim regexMtn As Object
+        Dim regexNorth As Object
+        Dim regexNE As Object
+        Dim regexNW As Object
+        Dim regexPkwy As Object
+        Dim regexPl As Object
+        Dim regexPlz As Object
+        Dim regexRdg As Object
+        Dim regexRd As Object
+        Dim regexRm As Object
+        Dim regexSouth As Object
+        Dim regexSE As Object
+        Dim regexSW As Object
+        Dim regexSq As Object
+        Dim regexSta As Object
+        Dim regexSt As Object
+        Dim regexSte As Object
+        Dim regexTer As Object
+        Dim regexTpke As Object
+        Dim regexVly As Object
+        Dim regexWest As Object
+        ' Set the objects as regular expressions
+        Set regexApt = New RegExp
+        Set regexAve = New RegExp
+        Set regexBlvd = New RegExp
+        Set regexCtr = New RegExp
+        Set regexCr = New RegExp
+        Set regexCt = New RegExp
+        Set regexDr = New RegExp
+        Set regexEast = New RegExp
+        Set regexExpy = New RegExp
+        Set regexHts = New RegExp
+        Set regexHwy = New RegExp
+        Set regexIs = New RegExp
+        Set regexJct = New RegExp
+        Set regexLk = New RegExp
+        Set regexLn = New RegExp
+        Set regexMtn = New RegExp
+        Set regexNorth = New RegExp
+        Set regexNE = New RegExp
+        Set regexNW = New RegExp
+        Set regexPkwy = New RegExp
+        Set regexPl = New RegExp
+        Set regexPlz = New RegExp
+        Set regexRdg = New RegExp
+        Set regexRd = New RegExp
+        Set regexRm = New RegExp
+        Set regexSouth = New RegExp
+        Set regexSE = New RegExp
+        Set regexSW = New RegExp
+        Set regexSq = New RegExp
+        Set regexSta = New RegExp
+        Set regexSt = New RegExp
+        Set regexSte = New RegExp
+        Set regexTer = New RegExp
+        Set regexTpke = New RegExp
+        Set regexVly = New RegExp
+        Set regexWest = New RegExp
+        
+        'Define the pattern for each abbreviated word to look for just the word, and to ignore when the word is part of a proper noun
+        regexApt.Pattern = "(\bApartment\b)"
+        regexAve.Pattern = "(\bAvenue\b)"
+        regexBlvd.Pattern = "(\bBoulevard\b)"
+        regexCtr.Pattern = "(\bCenter\b)"
+        regexCr.Pattern = "(\bCircle\b)"
+        regexCt.Pattern = "(\bCourt\b)"
+        regexDr.Pattern = "(\bDrive\b)"
+        regexEast.Pattern = "(\bEast\b)"
+        regexExpy.Pattern = "(\bExpressway\b)"
+        regexHts.Pattern = "(\bHeights\b)"
+        regexHwy.Pattern = "(\bHighway\b)"
+        regexIs.Pattern = "(\bIsland\b)"
+        regexJct.Pattern = "(\bJunction\b)"
+        regexLk.Pattern = "(\bLake\b)"
+        regexLn.Pattern = "(\bLane\b)"
+        regexMtn.Pattern = "(\bMountain\b)"
+        regexNorth.Pattern = "(\bNorth\b)"
+        regexNE.Pattern = "(\bNortheast\b)"
+        regexNW.Pattern = "(\bNorthwest\b)"
+        regexPkwy.Pattern = "(\bParkway\b)"
+        regexPl.Pattern = "(\bPlace\b)"
+        regexPlz.Pattern = "(\bPlaza\b)"
+        regexRdg.Pattern = "(\bRidge\b)"
+        regexRd.Pattern = "(\bRoad\b)"
+        regexRm.Pattern = "(\bRoom\b)"
+        regexSouth.Pattern = "(\bSouth\b)"
+        regexSE.Pattern = "(\bSoutheast\b)"
+        regexSW.Pattern = "(\bSouthwest\b)"
+        regexSq.Pattern = "(\bSquare\b)"
+        regexSta.Pattern = "(\bStation\b)"
+        regexSt.Pattern = "(\bStreet\b)"
+        regexSte.Pattern = "(\bSuite\b)"
+        regexTer.Pattern = "(\bTerrace\b)"
+        regexTpke.Pattern = "(\bTurnpike\b)"
+        regexVly.Pattern = "(\bValley\b)"
+        regexWest.Pattern = "(\bWest\b)"
+        'Ignore Casing
+        regexApt.IgnoreCase = IgnoreCase
+        regexAve.IgnoreCase = IgnoreCase
+        regexBlvd.IgnoreCase = IgnoreCase
+        regexCtr.IgnoreCase = IgnoreCase
+        regexCr.IgnoreCase = IgnoreCase
+        regexCt.IgnoreCase = IgnoreCase
+        regexDr.IgnoreCase = IgnoreCase
+        regexEast.IgnoreCase = IgnoreCase
+        regexExpy.IgnoreCase = IgnoreCase
+        regexHts.IgnoreCase = IgnoreCase
+        regexHwy.IgnoreCase = IgnoreCase
+        regexIs.IgnoreCase = IgnoreCase
+        regexJct.IgnoreCase = IgnoreCase
+        regexLk.IgnoreCase = IgnoreCase
+        regexLn.IgnoreCase = IgnoreCase
+        regexMtn.IgnoreCase = IgnoreCase
+        regexNorth.IgnoreCase = IgnoreCase
+        regexNE.IgnoreCase = IgnoreCase
+        regexNW.IgnoreCase = IgnoreCase
+        regexPkwy.IgnoreCase = IgnoreCase
+        regexPl.IgnoreCase = IgnoreCase
+        regexPlz.IgnoreCase = IgnoreCase
+        regexRdg.IgnoreCase = IgnoreCase
+        regexRd.IgnoreCase = IgnoreCase
+        regexRm.IgnoreCase = IgnoreCase
+        regexSouth.IgnoreCase = IgnoreCase
+        regexSE.IgnoreCase = IgnoreCase
+        regexSW.IgnoreCase = IgnoreCase
+        regexSq.IgnoreCase = IgnoreCase
+        regexSta.IgnoreCase = IgnoreCase
+        regexSt.IgnoreCase = IgnoreCase
+        regexSte.IgnoreCase = IgnoreCase
+        regexTer.IgnoreCase = IgnoreCase
+        regexTpke.IgnoreCase = IgnoreCase
+        regexVly.IgnoreCase = IgnoreCase
+        regexWest.IgnoreCase = IgnoreCase
+        
+        
+        'If myAdd1.Value contains a match for the pattern, replace with the proper abbreviation
+        'Remember, myAdd1.Value was converted into a string for the purpose of the proper casing function above
+        
+        
+        myAdd1.Value = regexApt.Replace(myAdd1.Value, "Apt")
+        myAdd1.Value = regexAve.Replace(myAdd1.Value, "Ave")
+        myAdd1.Value = regexBlvd.Replace(myAdd1.Value, "Blvd")
+        myAdd1.Value = regexCtr.Replace(myAdd1.Value, "Ctr")
+        myAdd1.Value = regexCr.Replace(myAdd1.Value, "Cr")
+        myAdd1.Value = regexCt.Replace(myAdd1.Value, "Ct")
+        myAdd1.Value = regexDr.Replace(myAdd1.Value, "Dr")
+        myAdd1.Value = regexEast.Replace(myAdd1.Value, "E")
+        myAdd1.Value = regexExpy.Replace(myAdd1.Value, "Expy")
+        myAdd1.Value = regexHts.Replace(myAdd1.Value, "Hts")
+        myAdd1.Value = regexHwy.Replace(myAdd1.Value, "Hwy")
+        myAdd1.Value = regexIs.Replace(myAdd1.Value, "Is")
+        myAdd1.Value = regexJct.Replace(myAdd1.Value, "Jct")
+        myAdd1.Value = regexLk.Replace(myAdd1.Value, "Lk")
+        myAdd1.Value = regexLn.Replace(myAdd1.Value, "Ln")
+        myAdd1.Value = regexMtn.Replace(myAdd1.Value, "Mtn")
+        myAdd1.Value = regexNorth.Replace(myAdd1.Value, "N")
+        myAdd1.Value = regexNE.Replace(myAdd1.Value, "NE")
+        myAdd1.Value = regexNW.Replace(myAdd1.Value, "NW")
+        myAdd1.Value = regexPkwy.Replace(myAdd1.Value, "Pkwy")
+        myAdd1.Value = regexPl.Replace(myAdd1.Value, "Pl")
+        myAdd1.Value = regexPlz.Replace(myAdd1.Value, "Plz")
+        myAdd1.Value = regexRdg.Replace(myAdd1.Value, "Rdg")
+        myAdd1.Value = regexRd.Replace(myAdd1.Value, "Rd")
+        myAdd1.Value = regexRm.Replace(myAdd1.Value, "Rm")
+        myAdd1.Value = regexSouth.Replace(myAdd1.Value, "S")
+        myAdd1.Value = regexSE.Replace(myAdd1.Value, "SE")
+        myAdd1.Value = regexSW.Replace(myAdd1.Value, "SW")
+        myAdd1.Value = regexSq.Replace(myAdd1.Value, "Sq")
+        myAdd1.Value = regexSta.Replace(myAdd1.Value, "Sta")
+        myAdd1.Value = regexSt.Replace(myAdd1.Value, "St")
+        myAdd1.Value = regexSte.Replace(myAdd1.Value, "Ste")
+        myAdd1.Value = regexTer.Replace(myAdd1.Value, "Ter")
+        myAdd1.Value = regexTpke.Replace(myAdd1.Value, "Tpke")
+        myAdd1.Value = regexVly.Replace(myAdd1.Value, "Vly")
+        myAdd1.Value = regexWest.Replace(myAdd1.Value, "W")
+        
+        'Fix PO boxes
+        
+        myAdd1.Value = Replace(Expression:=myAdd1, Find:="Po ", Replace:="PO ", Count:=1)
+        myAdd1.Value = Replace(Expression:=myAdd1, Find:="P O ", Replace:="PO ", Count:=1)
+        
+        'Fix street number abbrievations
+        myAdd1.Value = Replace(Expression:=myAdd1, Find:="1St", Replace:="1st")
+        myAdd1.Value = Replace(Expression:=myAdd1, Find:="2Nd", Replace:="2nd")
+        myAdd1.Value = Replace(Expression:=myAdd1, Find:="3Rd", Replace:="3rd")
+        myAdd1.Value = Replace(Expression:=myAdd1, Find:="4Th", Replace:="4th")
+        myAdd1.Value = Replace(Expression:=myAdd1, Find:="5Th", Replace:="5th")
+        myAdd1.Value = Replace(Expression:=myAdd1, Find:="6Th", Replace:="6th")
+        myAdd1.Value = Replace(Expression:=myAdd1, Find:="7Th", Replace:="7th")
+        myAdd1.Value = Replace(Expression:=myAdd1, Find:="8Th", Replace:="8th")
+        myAdd1.Value = Replace(Expression:=myAdd1, Find:="9Th", Replace:="9th")
+        myAdd1.Value = Replace(Expression:=myAdd1, Find:="0Th", Replace:="0th")
+        myAdd1.Value = Replace(Expression:=myAdd1, Find:="1Th", Replace:="1th")
+        myAdd1.Value = Replace(Expression:=myAdd1, Find:="2Th", Replace:="2th")
+        myAdd1.Value = Replace(Expression:=myAdd1, Find:="3Th", Replace:="3th")
+
+    Next X
+End Sub
