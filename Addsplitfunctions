@@ -1,1 +1,186 @@
+Function ADDSPLIT1(myAdd1)
+    Dim myApt As String
+    Dim myApart As String
+    
+    Dim myRm As String
+    Dim myRoom As String
+    
+    Dim mySte As String
+    Dim mySuite As String
+    
+    Dim myFl As String
+    Dim myFloor As String
+    
+    Dim myNumtag As String
+    Dim myNumber As String
+    
+    myApt = "Apt"
+    myApart = "Apartment"
+    myRm = "Rm"
+    myRoom = "Room"
+    mySte = "Ste"
+    mySuite = "Suite"
+    myFl = "Fl"
+    myFloor = "Floor"
+    myNumtag = "#"
+    myNumber = "Number"
+    myUnit = "Unit"
+    
+    myAptVal = InStr(1, myAdd1, myApt)
+    myApartVal = InStr(1, myAdd1, myApart)
+    myRmVaL = InStr(1, myAdd1, myRm)
+    myRoomVal = InStr(1, myAdd1, myRoom)
+    mySteVal = InStr(1, myAdd1, mySte)
+    mySuiteVal = InStr(1, myAdd1, mySuite)
+    myFlVal = InStr(1, myAdd1, myFl)
+    myFloorVal = InStr(1, myAdd1, myFloor)
+    myNumtagVal = InStr(1, myAdd1, myNumtag)
+    myNumberVal = InStr(1, myAdd1, myNumber)
+    myUnitVal = InStr(1, myAdd1, myUnit)
+    
+    myLen = Len(myAdd1)
+    
+    If myAptVal > 1 Then
+        myAddtext = Mid(myAdd1, myAptVal, myLen)
+        myRemoved = WorksheetFunction.Substitute(myAdd1, myAddtext, "")
+        myRemoved = Trim(myRemoved)
+        ADDSPLIT1 = myRemoved
+    ElseIf myApartVal > 1 Then
+        myAddtext = Mid(myAdd1, myApartVal, myLen)
+        myRemoved = WorksheetFunction.Substitute(myAdd1, myAddtext, "")
+        myRemoved = Trim(myRemoved)
+        ADDSPLIT1 = myRemoved
+    ElseIf myRmVaL > 1 Then
+        myAddtext = Mid(myAdd1, myRmVaL, myLen)
+        myRemoved = WorksheetFunction.Substitute(myAdd1, myAddtext, "")
+        myRemoved = Trim(myRemoved)
+        ADDSPLIT1 = myRemoved
+    ElseIf myRoomVal > 1 Then
+        myAddtext = Mid(myAdd1, myRoomVal, myLen)
+        myRemoved = WorksheetFunction.Substitute(myAdd1, myAddtext, "")
+        myRemoved = Trim(myRemoved)
+        ADDSPLIT1 = myRemoved
+    ElseIf mySteVal > 1 Then
+        'Has a bug that improperly catches street names beginning with Ste and splits the address at the street name, this includes the word Street
+        myAddtext = Mid(myAdd1, mySteVal, myLen)
+        myRemoved = WorksheetFunction.Substitute(myAdd1, myAddtext, "")
+        myRemoved = Trim(myRemoved)
+        ADDSPLIT1 = myRemoved
+    ElseIf mySuiteVal > 1 Then
+        myAddtext = Mid(myAdd1, mySuiteVal, myLen)
+        myRemoved = WorksheetFunction.Substitute(myAdd1, myAddtext, "")
+        myRemoved = Trim(myRemoved)
+        ADDSPLIT1 = myRemoved
+    ElseIf myFlVal > 1 Then
+        'Has a bug that improperly catches street names beginning with Fl and splits the address at the street name
+        myAddtext = Mid(myAdd1, myFlVal, myLen)
+        myRemoved = WorksheetFunction.Substitute(myAdd1, myAddtext, "")
+        myRemoved = Trim(myRemoved)
+        ADDSPLIT1 = myRemoved
+    ElseIf myFloorVal > 1 Then
+        myAddtext = Mid(myAdd1, myFloorVal, myLen)
+        myRemoved = WorksheetFunction.Substitute(myAdd1, myAddtext, "")
+        myRemoved = Trim(myRemoved)
+        ADDSPLIT1 = myRemoved
+    ElseIf myNumtagVal > 1 Then
+        myAddtext = Mid(myAdd1, myNumtagVal, myLen)
+        myRemoved = WorksheetFunction.Substitute(myAdd1, myAddtext, "")
+        myRemoved = Trim(myRemoved)
+        ADDSPLIT1 = myRemoved
+    ElseIf myNumberVal > 1 Then
+        myAddtext = Mid(myAdd1, myNumberVal, myLen)
+        myRemoved = WorksheetFunction.Substitute(myAdd1, myAddtext, "")
+        myRemoved = Trim(myRemoved)
+        ADDSPLIT1 = myRemoved
+    ElseIf myUnitVal > 1 Then
+        myAddtext = Mid(myAdd1, myUnitVal, myLen)
+        myRemoved = WorksheetFunction.Substitute(myAdd1, myAddtext, "")
+        myRemoved = Trim(myRemoved)
+        ADDSPLIT1 = myRemoved
+    Else
+        ADDSPLIT1 = myAdd1
+    End If
+End Function
 
+Function ADDSPLIT2(myAdd1)
+    Dim myApt As String
+    Dim myApart As String
+    
+    Dim myRm As String
+    Dim myRoom As String
+    
+    Dim mySte As String
+    Dim mySuite As String
+    
+    Dim myFl As String
+    Dim myFloor As String
+    
+    Dim myNumtag As String
+    Dim myNumber As String
+    
+    myApt = "Apt"
+    myApart = "Apartment"
+    myRm = "Rm"
+    myRoom = "Room"
+    mySte = "Ste"
+    mySuite = "Suite"
+    myFl = "Fl"
+    myFloor = "Floor"
+    myNumtag = "#"
+    myNumber = "Number"
+    myUnit = "Unit"
+    
+    myAptVal = InStr(1, myAdd1, myApt)
+    myApartVal = InStr(1, myAdd1, myApart)
+    myRmVaL = InStr(1, myAdd1, myRm)
+    myRoomVal = InStr(1, myAdd1, myRoom)
+    mySteVal = InStr(1, myAdd1, mySte)
+    mySuiteVal = InStr(1, myAdd1, mySuite)
+    myFlVal = InStr(1, myAdd1, myFl)
+    myFloorVal = InStr(1, myAdd1, myFloor)
+    myNumtagVal = InStr(1, myAdd1, myNumtag)
+    myNumberVal = InStr(1, myAdd1, myNumber)
+    myUnitVal = InStr(1, myAdd1, myUnit)
+    
+    myLen = Len(myAdd1)
+    
+    If myAptVal > 1 Then
+        myAddtext = Mid(myAdd1, myAptVal, myLen)
+        ADDSPLIT2 = myAddtext
+'    MyRemoved = WorksheetFunction.Substitute(Name, MyClientID, "")
+'    MyProper = StrConv(MyRemoved, vbProperCase)
+'    MyTrimmed = Trim(MyProper)
+    ElseIf myApartVal > 1 Then
+        myAddtext = Mid(myAdd1, myApartVal, myLen)
+        ADDSPLIT2 = myAddtext
+    ElseIf myRmVaL > 1 Then
+        myAddtext = Mid(myAdd1, myRmVaL, myLen)
+        ADDSPLIT2 = myAddtext
+    ElseIf myRoomVal > 1 Then
+        myAddtext = Mid(myAdd1, myRoomVal, myLen)
+        ADDSPLIT2 = myAddtext
+    ElseIf mySteVal > 1 Then
+        myAddtext = Mid(myAdd1, mySteVal, myLen)
+        ADDSPLIT2 = myAddtext
+    ElseIf mySuiteVal > 1 Then
+        myAddtext = Mid(myAdd1, mySuiteVal, myLen)
+        ADDSPLIT2 = myAddtext
+    ElseIf myFlVal > 1 Then
+        myAddtext = Mid(myAdd1, myFlVal, myLen)
+        ADDSPLIT2 = myAddtext
+    ElseIf myFloorVal > 1 Then
+        myAddtext = Mid(myAdd1, myFloorVal, myLen)
+        ADDSPLIT2 = myAddtext
+    ElseIf myNumtagVal > 1 Then
+        myAddtext = Mid(myAdd1, myNumtagVal, myLen)
+        ADDSPLIT2 = myAddtext
+    ElseIf myNumberVal > 1 Then
+        myAddtext = Mid(myAdd1, myNumberVal, myLen)
+        ADDSPLIT2 = myAddtext
+    ElseIf myUnitVal > 1 Then
+        myAddtext = Mid(myAdd1, myUnitVal, myLen)
+        ADDSPLIT2 = myAddtext
+    Else
+        ADDSPLIT2 = ""
+    End If
+End Function
